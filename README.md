@@ -1,2 +1,3 @@
-# Baekjoon_Online_Judge
-Baekjoon 문제 풀기
+## Baekjoon_Online_Judge
+
+[![hoshogiii](http://mazassumnida.wtf/api/v2/generate_badge?boj=hoshogiii)](https://solved.ac/hoshogiii)
