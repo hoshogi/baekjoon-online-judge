@@ -1,5 +1,5 @@
-/*
-Title   : BOJ_2386 [µµºñÀÇ ¿µ¾î °øºÎ]
+ï»¿/*
+Title   : BOJ_2386 [ë„ë¹„ì˜ ì˜ì–´ ê³µë¶€]
 Author  : Hoseok Lee
 Date    : 2021/05/14
 
