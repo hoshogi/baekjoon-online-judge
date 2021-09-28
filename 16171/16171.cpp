@@ -11,6 +11,7 @@ https://www.acmicpc.net/problem/16171
 #include <algorithm>
 using namespace std;
 
+// string의 find함수를 사용한 풀이
 bool Check(string book, string keyword) {
     string word = "";
     
@@ -18,14 +19,11 @@ bool Check(string book, string keyword) {
         if (!(c >= '0' && c <= '9'))
             word += c;
     }
-
-    for (int i = 0;i <= word.length() - keyword.length();i++)
-    {
-        string temp = word.substr(i, keyword.length());
-        if (temp == keyword)
-            return true;
-    }
-    return false;
+    
+    if (word.find(keyword) == string::npos)
+        return false;
+    else
+        return true;
 }
 
 int main(void) {
@@ -40,3 +38,42 @@ int main(void) {
         cout << 0 << '\n';
     return 0;
 }
+
+// 맨 처음으로 풀었을때 풀이
+// find함수를 사용하지 않은 풀이
+/*
+ #include <iostream>
+ #include <string>
+ #include <algorithm>
+ using namespace std;
+
+ bool Check(string book, string keyword) {
+     string word = "";
+     
+     for (char c : book) {
+         if (!(c >= '0' && c <= '9'))
+             word += c;
+     }
+
+     for (int i = 0;i <= word.length() - keyword.length();i++)
+     {
+         string temp = word.substr(i, keyword.length());
+         if (temp == keyword)
+             return true;
+     }
+     return false;
+ }
+
+ int main(void) {
+     ios_base::sync_with_stdio(false);
+     cin.tie(nullptr);
+     
+     string book, keyword;
+     cin >> book >> keyword;
+     if (Check(book, keyword))
+         cout << 1 << '\n';
+     else
+         cout << 0 << '\n';
+     return 0;
+ }
+ */
