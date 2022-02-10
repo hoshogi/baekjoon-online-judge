@@ -1,8 +1,8 @@
 /*
-Title   : BOJ_2789 [블랙잭]
+Title   : BOJ_2798 [블랙잭]
 Author  : Hoseok Lee
 Date    : 2021/03/07
-
+ 
 https://www.acmicpc.net/problem/2798
 https://github.com/hoshogi
 */
