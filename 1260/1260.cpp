@@ -1,64 +1,73 @@
 /*
 Title   : BOJ_1260 [DFS와 BFS]
 Author  : Hoseok Lee
-Date    : 2022/02/05
+Date    : 2022/04/26
 https://www.acmicpc.net/problem/1260
 https://github.com/hoshogi
 */
 
 #include <iostream>
-#include <queue>
 #include <vector>
+#include <queue>
+#include <algorithm>
 using namespace std;
 
-void dfs(bool edge[1001][1001], int v, bool visited[1001], int n) {
-    visited[v] = true;
-    cout << v << ' ';
-    for (int i = 1; i <= n ; i++) {
-        if (edge[v][i] == true && visited[i] == false)
-            dfs(edge, i, visited, n);
+void dfs(vector<int> graph[1001], int vertex, bool visited[1001]) {
+    visited[vertex] = true;
+    cout << vertex << ' ';
+    for (int i = 0; i < graph[vertex].size(); i++) {
+        if (!visited[graph[vertex][i]])
+            dfs(graph, graph[vertex][i], visited);
     }
 }
 
-void bfs(bool edge[1001][1001], int v, bool visited[1001], int n) {
+
+void bfs(vector<int> graph[1001], int start, bool visited[1001]) {
     queue<int> q;
-    
-    q.push(v);
-    while (!q.empty()) {
+    visited[start] = true;
+    q.push(start);
+    while(!q.empty()) {
         int vertex = q.front();
         q.pop();
-        visited[vertex] = true;
         cout << vertex << ' ';
-        for (int i = 1; i <= n; i++) {
-            if (edge[vertex][i] == true && visited[i] == false) {
-                visited[i] = true;
-                q.push(i);
+        for (int i = 0; i < graph[vertex].size(); i++) {
+            if (!visited[graph[vertex][i]]) {
+                visited[graph[vertex][i]] = true;
+                q.push(graph[vertex][i]);
             }
         }
     }
 }
 
-
 int main(void) {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-
+    cout.tie(nullptr);
+    
+    int n, m, start;
     bool edge[1001][1001] = {false, };
     bool visited[1001] = {false, };
+    vector<int> graph[1001];
     
-    int n, m, v;
-    cin >> n >> m >> v;
-    
+    cin >> n >> m >> start;
     for (int i = 0; i < m; i++) {
         int a, b;
         
         cin >> a >> b;
-        edge[a][b] = true;
-        edge[b][a] = true;
+        if (!edge[a][b] && !edge[b][a]) {
+            edge[a][b] = true;
+            edge[b][a] = true;
+            graph[a].push_back(b);
+            graph[b].push_back(a);
+        }
     }
-    dfs(edge, v, visited, n);
+    
+    for (int i = 1; i <= n; i++)
+        sort(graph[i].begin(), graph[i].end());
+    
+    dfs(graph, start, visited);
     cout << '\n';
-    fill_n(visited, 1001, false);
-    bfs(edge, v, visited, n);
+    fill_n(visited, n + 1, false);
+    bfs(graph, start, visited);
     return 0;
 }
