@@ -1,55 +1,42 @@
-/*
+﻿/*
 Title   : BOJ_1920 [수 찾기]
 Author  : Hoseok Lee
-Date    : 2021/04/06
- 
+Date    : 2022/05/04
 https://www.acmicpc.net/problem/1920
 https://github.com/hoshogi
 */
 
 #include <iostream>
+#include <vector>
 #include <algorithm>
 using namespace std;
 
-// 이진 탐색 알고리즘
-int BinarySearch(int a[], int left, int right, int x)
-{
-    while (left <= right)
-    {
-        int middle = (left + right) / 2;
-        
-        if (a[middle] == x)
-            return 1;
-        else if (a[middle] > x)
-            right = middle - 1;
-        else if (a[middle] < x)
-            left = middle + 1;
-    }
-    
-    return 0;
-}
+int main(void) {
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	cout.tie(nullptr);
 
-int main(void)
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    
-    int n, m, x;
-    
-    cin >> n;
-    int* a = new int [n];
-    
-    for(int i = 0;i < n;i++)
-        cin >> a[i];
-    
-    sort(a, a + n);
-    
-    cin >> m;
-    while(m--)
-    {
-        cin >> x;
-        cout << BinarySearch(a, 0, n - 1, x) << '\n';
-    }
-    
-    return 0;
+	int n, m;
+	vector<int> v;
+
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		int num;
+
+		cin >> num;
+		v.push_back(num);
+	}
+	sort(v.begin(), v.end());
+
+	cin >> m;
+	for (int i = 0; i < m; i++) {
+		int num;
+
+		cin >> num;
+		if (binary_search(v.begin(), v.end(), num))
+			cout << 1 << '\n';
+		else
+			cout << 0 << '\n';
+	}
+	return 0;
 }
