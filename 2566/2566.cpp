@@ -14,7 +14,7 @@ int main(void)
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     
-    int max = 0;
+    int max = -1;
     int max_row, max_col;
     
     for (int i = 0;i < 9;i++)
